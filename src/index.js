@@ -49,12 +49,7 @@ export default {
         return json({ error: 'Invalid JSON body.' }, 400, origin);
       }
 
-      const messageType = (body.messageType ?? '').trim();
       const text = (body.text ?? '').trim();
-
-      if (!messageType) {
-        return json({ error: 'Message type cannot be empty.' }, 400, origin);
-      }
 
       if (!text) {
         return json({ error: 'Text cannot be empty.' }, 400, origin);
@@ -65,8 +60,8 @@ export default {
       }
 
       const result = await env.DB.prepare(
-        'INSERT INTO messages (message_type, text) VALUES (?, ?) RETURNING id, message_type, text, created_at'
-      ).bind(messageType, text).first();
+        'INSERT INTO messages (text) VALUES (?) RETURNING id, text, created_at'
+      ).bind(text).first();
 
       return json({ message: result }, 201, origin);
     }
@@ -74,7 +69,7 @@ export default {
     // GET /api/messages
     if (pathname === '/api/messages' && method === 'GET') {
       const { results } = await env.DB.prepare(
-        'SELECT id, message_type, text, created_at FROM messages ORDER BY created_at DESC LIMIT 50'
+        'SELECT id, text, created_at FROM messages ORDER BY created_at DESC LIMIT 50'
       ).all();
 
       return json({ messages: results }, 200, origin);
