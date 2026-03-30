@@ -4,7 +4,7 @@ const MAX_LENGTH = 1000;
 const ALLOWED_ORIGINS = [
   'http://localhost',
   'http://127.0.0.1',
-  // 'https://YOUR_GITHUB_USERNAME.github.io',  // uncomment and fill after publishing
+  'https://randdythebigboss.github.io',
 ];
 
 function corsHeaders(origin) {
