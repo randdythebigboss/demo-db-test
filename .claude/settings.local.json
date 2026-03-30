@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(ls \"c:\\\\Users\\\\rrfeliz\\\\OneDrive - Santo Domingo Motors Company \\(SADOMOCO\\)\\\\Desktop\\\\workspace\\\\demo-db-test\")"
+      "Bash(ls \"c:\\\\Users\\\\rrfeliz\\\\OneDrive - Santo Domingo Motors Company \\(SADOMOCO\\)\\\\Desktop\\\\workspace\\\\demo-db-test\")",
+      "Bash(find \"c:\\\\Users\\\\rrfeliz\\\\OneDrive - Santo Domingo Motors Company \\(SADOMOCO\\)\\\\Desktop\\\\workspace\\\\demo-db-test\" -type f)"
     ]
   }
 }

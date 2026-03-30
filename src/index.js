@@ -32,7 +32,8 @@ function json(data, status = 200, origin = '') {
 export default {
   async fetch(request, env) {
     const origin = request.headers.get('Origin') ?? '';
-    const { pathname, method } = new URL(request.url);
+    const { pathname } = new URL(request.url);
+    const method = request.method;
 
     // Preflight
     if (request.method === 'OPTIONS') {

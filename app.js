@@ -3,7 +3,7 @@
 // Replace this URL with your deployed Cloudflare Worker URL
 // after running: wrangler deploy
 // -------------------------------------------------------
-const API_BASE = 'https://YOUR_WORKER_SUBDOMAIN.workers.dev';
+const API_BASE = 'http://127.0.0.1:8787'; // Replace with your deployed Worker URL after: wrangler deploy
 // -------------------------------------------------------
 
 const textarea   = document.getElementById('messageInput');
