@@ -3,13 +3,14 @@
 // Replace this URL with your deployed Cloudflare Worker URL
 // after running: wrangler deploy
 // -------------------------------------------------------
-const API_BASE = 'https://demo-db-test-worker.ing-randdy.workers.dev'; // Replace with your deployed Worker URL after: wrangler deploy
+const API_BASE = 'https://demo-db-test-worker.ing-randdy.workers.dev';
 // -------------------------------------------------------
 
-const textarea   = document.getElementById('messageInput');
-const charCount  = document.getElementById('charCount');
-const saveBtn    = document.getElementById('saveBtn');
-const statusMsg  = document.getElementById('statusMsg');
+const typeInput   = document.getElementById('messageTypeInput');
+const textarea    = document.getElementById('messageInput');
+const charCount   = document.getElementById('charCount');
+const saveBtn     = document.getElementById('saveBtn');
+const statusMsg   = document.getElementById('statusMsg');
 const messageList = document.getElementById('messageList');
 
 // Update character counter
@@ -19,7 +20,13 @@ textarea.addEventListener('input', () => {
 
 // Save button
 saveBtn.addEventListener('click', async () => {
+  const messageType = typeInput.value.trim();
   const text = textarea.value.trim();
+
+  if (!messageType) {
+    showStatus('Message type cannot be empty.', 'error');
+    return;
+  }
 
   if (!text) {
     showStatus('Message cannot be empty.', 'error');
@@ -32,7 +39,7 @@ saveBtn.addEventListener('click', async () => {
     const res = await fetch(`${API_BASE}/api/messages`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ text }),
+      body: JSON.stringify({ messageType, text }),
     });
 
     const data = await res.json();
@@ -42,6 +49,7 @@ saveBtn.addEventListener('click', async () => {
       return;
     }
 
+    typeInput.value = '';
     textarea.value = '';
     charCount.textContent = '0';
     showStatus('Message saved!', 'success');
@@ -72,6 +80,7 @@ async function loadMessages() {
 
     messageList.innerHTML = messages.map(m => `
       <div class="message-item">
+        <div class="message-type">${escapeHtml(m.message_type)}</div>
         <div class="message-text">${escapeHtml(m.text)}</div>
         <div class="message-date">${formatDate(m.created_at)}</div>
       </div>
