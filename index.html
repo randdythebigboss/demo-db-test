@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Message Board</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Message Board</h1>
+
+    <div class="form-section">
+      <textarea
+        id="messageInput"
+        placeholder="Type your message here..."
+        maxlength="1000"
+      ></textarea>
+      <div class="char-count"><span id="charCount">0</span> / 1000</div>
+      <button id="saveBtn">Save</button>
+      <div id="statusMsg" class="status hidden"></div>
+    </div>
+
+    <div class="list-section">
+      <h2>Recent Messages</h2>
+      <div id="messageList"><p class="empty">No messages yet.</p></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

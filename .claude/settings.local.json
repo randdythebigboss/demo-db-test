@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls \"c:\\\\Users\\\\rrfeliz\\\\OneDrive - Santo Domingo Motors Company \\(SADOMOCO\\)\\\\Desktop\\\\workspace\\\\demo-db-test\")"
+    ]
+  }
+}
